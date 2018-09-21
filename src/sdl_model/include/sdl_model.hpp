@@ -26,6 +26,8 @@ public:
   /**\brief remove item from the model
    * \warning free memory of the item!*/
   void erase_item(sdl_object *item);
+
+protected:
   /**\brief draw all items in the model*/
   void draw_all(::SDL_Renderer *renderer);
   void update_all();

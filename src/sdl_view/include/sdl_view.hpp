@@ -4,8 +4,8 @@
 
 namespace wrapper {
 class sdl_model;
-class sdl_view {
 
+class sdl_view {
 private:
   ::SDL_Window *window_;
   ::SDL_Renderer *renderer_;
@@ -42,6 +42,10 @@ public:
    * \return if case any problems with initialization of window of renderer
    * return false*/
   bool show();
+  /**\return current renderer*/
+  ::SDL_Renderer *get_renderer() const;
+  /**\return current window*/
+  ::SDL_Window *get_window() const;
 
 private:
   void event_handler();

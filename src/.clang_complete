@@ -1,2 +1,3 @@
 -Isdl_view/include
 -Isdl_model/include
+-Iobjects/include

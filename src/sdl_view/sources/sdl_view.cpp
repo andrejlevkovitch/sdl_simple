@@ -79,6 +79,10 @@ bool wrapper::sdl_view::show() {
   return true;
 }
 
+::SDL_Renderer *wrapper::sdl_view::get_renderer() const { return renderer_; }
+
+::SDL_Window *wrapper::sdl_view::get_window() const { return window_; }
+
 void wrapper::sdl_view::event_handler() {
   while (true) {
     ::SDL_Event event;
