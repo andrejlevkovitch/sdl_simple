@@ -1,0 +1,6 @@
+bin
+build
+doc
+lib
+plugin
+compile_commands.json
