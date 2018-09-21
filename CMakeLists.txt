@@ -13,9 +13,15 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
 
 set(LIST_TARGETS CACHE STRING "list of targets" FORCE)
-set(LIST_SUBDIRS sdl_model sdl_view objects main)
+set(LIST_SUBDIRS sdl_model sdl_view main)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR};${CMAKE_MODULE_PATH}")
+
+set(CONFIG_DIR "${CMAKE_BINARY_DIR}/include")
+set(CONFIG_H "${CONFIG_DIR}/config.h")
+configure_file("config.h.cmake" ${CONFIG_H})
+
+include_directories(${CONFIG_DIR})
 
 include(build.cmake)
 

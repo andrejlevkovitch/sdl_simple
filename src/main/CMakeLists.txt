@@ -10,4 +10,3 @@ endforeach()
 
 find_package(SDL2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
-message(STATUS "${SDL2_IMAGE_LIBRARY}")
