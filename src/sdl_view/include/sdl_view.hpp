@@ -1,5 +1,7 @@
 // sdl_view.hpp
 
+#pragma once
+
 #include <SDL2/SDL.h>
 
 namespace wrapper {
@@ -13,8 +15,8 @@ private:
   bool break_loop_;
 
 public:
-  sdl_view(Uint32 flags = SDL_INIT_EVERYTHING);
-  ~sdl_view();
+  explicit sdl_view(Uint32 flags = SDL_INIT_EVERYTHING);
+  virtual ~sdl_view();
   /**\brief set custom window
    * \param title title of window
    * \param x_pos position of left-up corner of the window, on x-axis

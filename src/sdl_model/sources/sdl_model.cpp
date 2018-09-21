@@ -27,12 +27,21 @@ bool wrapper::sdl_model::add_item(sdl_object *item) {
 
 void wrapper::sdl_model::erase_item(sdl_object *item) {
   auto er_el = std::find(item_list_.begin(), item_list_.end(), item);
-  if (er_el == first_not_load_obj_) {
+  if (er_el == item_list_.end()) {
+    return;
+  }
+  while (first_not_load_obj_ != item_list_.end() &&
+         *er_el == *first_not_load_obj_) {
     ++first_not_load_obj_;
   }
   delete *er_el;
-  item_list_.erase(er_el);
+  item_list_.erase(std::remove(item_list_.begin(), item_list_.end(), *er_el),
+                   item_list_.end());
 }
+
+size_t wrapper::sdl_model::item_count() const { return item_list_.size(); }
+
+bool wrapper::sdl_model::empty() const { return item_list_.empty(); }
 
 void wrapper::sdl_model::draw_all(::SDL_Renderer *renderer) {
   if (first_not_load_obj_ != item_list_.end()) {

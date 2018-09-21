@@ -1,5 +1,7 @@
 // dog.hpp
 
+#pragma once
+
 #include "sdl_object.hpp"
 
 class dog : public wrapper::sdl_object {
