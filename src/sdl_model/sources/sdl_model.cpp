@@ -61,7 +61,7 @@ void wrapper::sdl_model::update_all() {
 void wrapper::sdl_model::load_all(SDL_Renderer *renderer) {
   for (auto item = first_not_load_obj_; item != item_list_.end(); ++item) {
     if (!(*item)->load(renderer)) {
-      std::cerr << "file " << (*item)->file_name_ << " not found\n";
+      std::cerr << "file " << (*item)->get_file_name() << " not found\n";
     }
   }
   first_not_load_obj_ = item_list_.end();

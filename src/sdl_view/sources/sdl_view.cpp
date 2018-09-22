@@ -17,7 +17,7 @@ wrapper::sdl_view::~sdl_view() {
 }
 
 bool wrapper::sdl_view::set_window(const char *title, int x_pos, int y_pos,
-                                   int width, int height, Uint32 flags) {
+                                   int width, int height, uint32_t flags) {
   if (window_) {
     ::SDL_DestroyWindow(window_);
     ::SDL_DestroyRenderer(renderer_);

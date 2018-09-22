@@ -4,9 +4,10 @@
 #include "sdl_model.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <SDL2/SDL.h>
 
 int main(int argc, char *argv[]) {
-  wrapper::sdl_view view;
+  wrapper::sdl_view view{SDL_INIT_EVERYTHING};
   wrapper::sdl_model model;
   view.set_model(&model);
 

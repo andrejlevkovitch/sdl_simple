@@ -8,11 +8,12 @@
 #include "sdl_object.hpp"
 #include "sdl_view.hpp"
 #include <stdexcept>
+#include <SDL2/SDL.h>
 
 BOOST_AUTO_TEST_SUITE(test_view)
 
 struct fixture_view : public wrapper::sdl_view {
-  fixture_view() : sdl_view{} {};
+  fixture_view() : sdl_view{SDL_INIT_EVERYTHING} {};
 };
 
 BOOST_FIXTURE_TEST_CASE(test_exceptions, fixture_view) {
@@ -65,7 +66,7 @@ struct planet : public wrapper::sdl_object {
 
 BOOST_FIXTURE_TEST_CASE(test_draw_void_obj, fixture_obj) {
   this->set_file_name("not_valid_name");
-  wrapper::sdl_view view;
+  wrapper::sdl_view view{SDL_INIT_EVERYTHING};
   view.set_window();
   view.set_renderer();
   view.set_render_color();
@@ -75,7 +76,7 @@ BOOST_FIXTURE_TEST_CASE(test_draw_void_obj, fixture_obj) {
 
 BOOST_FIXTURE_TEST_CASE(test_load_valid_obj, fixture_obj) {
   this->set_file_name(way_to_images + "dog.png");
-  wrapper::sdl_view view;
+  wrapper::sdl_view view{SDL_INIT_EVERYTHING};
   view.set_window();
   view.set_renderer();
   view.set_render_color();
@@ -96,7 +97,7 @@ BOOST_AUTO_TEST_CASE(complete_test) {
   center->y = obj1->get_size().second + obj->get_size().second / 2;
   obj1->set_center(center);
 
-  wrapper::sdl_view view;
+  wrapper::sdl_view view{SDL_INIT_EVERYTHING};
   wrapper::sdl_model model;
   view.set_model(&model);
 

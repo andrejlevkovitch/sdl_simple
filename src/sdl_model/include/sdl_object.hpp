@@ -2,35 +2,17 @@
 
 #pragma once
 
-#include <SDL2/SDL.h>
 #include <string>
+
+struct SDL_Point;
+struct SDL_Renderer;
+struct SDL_Texture;
 
 namespace wrapper {
 class sdl_model;
 
 /**\brief abstract base class for some graphical objects*/
 class sdl_object {
-  friend sdl_model;
-
-private:
-  std::string file_name_;
-  ::SDL_Texture *texture_;
-  int width_;
-  int height_;
-  /**\brief only for sprites. Numeration from 0. Default 0*/
-  int row_;
-  /**\brief only for sprites. Numeration from 0. Default 0*/
-  int column_;
-  int x_pos_;
-  int y_pos_;
-  double angle_;
-  /**\brief this point set center of rotation. Default this is center of the
-   * texture (nullptr)
-   * \warning only dynamic memory! destructor destroy it automaticly*/
-  ::SDL_Point *center_;
-  /**\brief default SDL_FLIP_NONE*/
-  ::SDL_RendererFlip flip_;
-
 public:
   sdl_object();
   virtual ~sdl_object();
@@ -66,20 +48,36 @@ public:
   /**\return pointer to structure, which point to center of object. If center
    * equal width/2, height/2 return nullptr*/
   const ::SDL_Point *get_center() const;
-  void set_flip(::SDL_RendererFlip flip);
-  ::SDL_RendererFlip get_flip() const;
-
-protected:
+  void set_flip(int flip);
+  int get_flip() const;
   /**\brief load image
    * \warning if width or height eqal 0, than this values will be set equal
    * image size*/
   bool load(::SDL_Renderer *renderer);
   /**\brief draw the object in window*/
   virtual void draw(::SDL_Renderer *renderer) const;
-
-public:
   /**\brief set here all functioanality, which change object during game. You
    * have to define this method*/
   virtual void update() = 0;
+
+private:
+  std::string file_name_;
+  ::SDL_Texture *texture_;
+  int width_;
+  int height_;
+  /**\brief only for sprites. Numeration from 0. Default 0*/
+  int row_;
+  /**\brief only for sprites. Numeration from 0. Default 0*/
+  int column_;
+  int x_pos_;
+  int y_pos_;
+  double angle_;
+  /**\brief this point set center of rotation. Default this is center of the
+   * texture (nullptr)
+   * \warning only dynamic memory! destructor destroy it automaticly*/
+  ::SDL_Point *center_;
+  /**\brief default SDL_FLIP_NONE*/
+  int flip_;
+
 };
 }; // namespace wrapper

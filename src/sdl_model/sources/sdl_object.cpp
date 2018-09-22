@@ -65,9 +65,9 @@ void wrapper::sdl_object::set_center(::SDL_Point *center) {
 
 const ::SDL_Point *wrapper::sdl_object::get_center() const { return center_; }
 
-void wrapper::sdl_object::set_flip(::SDL_RendererFlip flip) { flip_ = flip; }
+void wrapper::sdl_object::set_flip(int flip) { flip_ = flip; }
 
-::SDL_RendererFlip wrapper::sdl_object::get_flip() const { return flip_; }
+int wrapper::sdl_object::get_flip() const { return flip_; }
 
 bool wrapper::sdl_object::load(::SDL_Renderer *renderer) {
   auto surface = ::IMG_Load(file_name_.c_str());
@@ -97,5 +97,5 @@ void wrapper::sdl_object::draw(::SDL_Renderer *renderer) const {
   des_rect.h = src_rect.h = height_;
 
   ::SDL_RenderCopyEx(renderer, texture_, &src_rect, &des_rect, angle_, center_,
-                     flip_);
+                     static_cast<::SDL_RendererFlip>(flip_));
 }

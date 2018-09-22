@@ -12,13 +12,6 @@ class sdl_object;
 class sdl_view;
 
 class sdl_model {
-  friend sdl_view;
-
-private:
-  /**\brief list with all objects in this model. Every item push back*/
-  std::list<sdl_object *> item_list_;
-  std::list<sdl_object *>::iterator first_not_load_obj_;
-
 public:
   sdl_model();
   virtual ~sdl_model();
@@ -33,11 +26,14 @@ public:
   void erase_item(sdl_object *item);
   size_t item_count() const;
   bool empty() const;
-
-protected:
+  void load_all(::SDL_Renderer *renderer);
+  void update_all();
   /**\brief draw all items in the model*/
   void draw_all(::SDL_Renderer *renderer);
-  void update_all();
-  void load_all(::SDL_Renderer *renderer);
+
+private:
+  /**\brief list with all objects in this model. Every item push back*/
+  std::list<sdl_object *> item_list_;
+  std::list<sdl_object *>::iterator first_not_load_obj_;
 };
 }; // namespace wrapper
